@@ -3,6 +3,7 @@ import { ModalController } from 'ionic-angular';
 
 import { Quote } from '../../data/quote.interface';
 import { QuotesService } from '../../services/quotes.service';
+import { SettingsService } from '../../services/settings.service';
 import { QuotePage } from '../quote/quote';
 
 @Component({
@@ -11,18 +12,22 @@ import { QuotePage } from '../quote/quote';
 })
 export class FavoritesPage {
   quotes;
+  backgroundColor;
 
   constructor(
     private quotesService: QuotesService,
+    private settingsService: SettingsService,
     private modalController: ModalController
   ) { }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.loadQuotes();
   }
 
   loadQuotes() {
     this.quotes = this.quotesService.getFavoriteQuotes();
+    this.backgroundColor = this.settingsService.getBackgroundColor();
+    console.log(this.backgroundColor);
   }
 
   onViewQuote(quote: Quote) {
