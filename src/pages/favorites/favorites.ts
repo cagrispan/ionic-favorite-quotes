@@ -36,4 +36,9 @@ export class FavoritesPage {
     modal.present();
   }
 
+  removeQuote(quote: Quote) {
+    this.quotesService.removeQuoteToFavorites(quote);
+    this.loadQuotes();
+  }
+
 }
