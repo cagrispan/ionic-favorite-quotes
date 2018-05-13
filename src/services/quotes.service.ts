@@ -12,4 +12,8 @@ export class QuotesService {
   getFavoriteQuotes() {
     return this.favoriteQuotes.values();
   }
+
+  isQuoteFavorite(quote) {
+    return this.favoriteQuotes.has(quote);
+  }
 }

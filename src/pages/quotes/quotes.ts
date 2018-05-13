@@ -21,6 +21,10 @@ export class QuotesPage implements OnInit {
     this.quoteGroup = this.navParams.data;
   }
 
+  isQuoteFavorite(quote) {
+    return this.quotesService.isQuoteFavorite(quote);
+  }
+
   onAddToFavorite(quote) {
     const alert = this.alertController.create({
       title: 'Favorite Quote',
@@ -35,6 +39,26 @@ export class QuotesPage implements OnInit {
         {
           text: 'Confirm',
           handler: () => this.quotesService.addQuoteToFavorites(quote)
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  onRemoveToFavorite(quote) {
+    const alert = this.alertController.create({
+      title: 'Unfavorite Quote',
+      subTitle: 'Are you sure?',
+      message: 'Are you sure you want to unfavorite the quote?',
+      buttons: [
+        {
+          text: 'Confirm',
+          handler: () => this.quotesService.removeQuoteToFavorites(quote)
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => console.log('Cancel')
         }
       ]
     });
